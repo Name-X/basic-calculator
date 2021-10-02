@@ -18,10 +18,19 @@ class Compute:
             if i in self.OPERATORS:
                 tokens.append(i)
             else:
-                num = float(i)
-                while pos + 1 < len(chars) and chars[pos + 1].isdigit():
-                    pos += 1
-                    num = num * 10 + float(chars[pos])
-                tokens.append(num)
+                if i=='.':
+                    decCount = 0
+                    while pos+1 < charLen  and chars[pos +1].isdigit():
+                        prevNum = tokens.pop()
+                        actualNum = prevNum + float("."+str(decCount*'0') +chars[pos+1])
+                        tokens.append(actualNum)
+                        pos+=1
+                        decCount+=1
+                else:
+                    num = float(i)
+                    while pos + 1 < len(chars) and chars[pos + 1].isdigit():
+                        pos += 1
+                        num = num * 10 + float(chars[pos])
+                    tokens.append(num)
             pos += 1
         return (tokens, errMessage)
