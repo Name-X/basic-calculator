@@ -1,8 +1,20 @@
 import utils.utils as utils
+from Compute import Compute
 
 def run(inputExpr):
     isValid, statusMessage = utils.isValidExpr(inputExpr) 
     print(isValid, statusMessage)
+    if isValid:
+        cmp = Compute()
+        tokenList, err = cmp.getTokens(inputExpr)
+        if err=='':
+            print(tokenList)
+        else:
+            print("Error while tokenizing ", err)
+            return None
+    else:
+        print(statusMessage)
+        return None
     return None
    
 if __name__ == '__main__':
