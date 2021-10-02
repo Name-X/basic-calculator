@@ -1,14 +1,15 @@
-import utils.utils as utils
 from Compute import Compute
+import utils.utils as utils
 
 def run(inputExpr):
+    cmp = Compute()
     isValid, statusMessage = utils.isValidExpr(inputExpr) 
-    print(isValid, statusMessage)
     if isValid:
-        cmp = Compute()
         tokenList, err = cmp.getTokens(inputExpr)
         if err=='':
-            print(tokenList)
+            res = cmp.compute(tokenList)
+            print(res, err)
+            return round(res,2)
         else:
             print("Error while tokenizing ", err)
             return None

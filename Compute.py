@@ -1,11 +1,15 @@
 from typing import List, Tuple
 
+from Parser import Parser
 class Compute:
 
     OPERATORS = ['+', '-', '*', '/', '(', ')']
 
     def __init__(self):
         pass
+
+    def compute(self, tokens):
+        return Parser().parse(tokens)
 
     def getTokens(self, string:str) -> tuple:
         chars = list(string)
